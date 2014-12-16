@@ -1,21 +1,15 @@
 <polymer-element name="polymer-calculator" attributes="theme">
 	<template>
-		<style>
-			.dark {
-				color: red;
-			}
-
-			.light {
-				color: green;
-			}
-		</style>
+		<link rel="stylesheet" href="assets/css/polymer-calculator.css">
 		<div class="{{ {dark: theme === 'dark', light: theme === 'light'} | tokenList}}">
-			Calculator polymer element test <span>Theme color: {{theme}}</span>
+			<template repeat="{{row in numpad}}">
+				<div flex horizontal layout>
+					<template repeat="{{key in row}}">
+						<div class="keys" on-click="{{processButton}}" data-value="{{key}}">{{key}}</div>
+					</template>
+				</div>
+			</template>
 		</div>
 	</template>
-	<script>
-		Polymer('polymer-calculator', {
-			theme: 'light'
-		});
-	</script>
+	<script src="assets/js/polymer-calculator.js"></script>
 </polymer-element>
