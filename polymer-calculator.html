@@ -2,6 +2,9 @@
 	<template>
 		<link rel="stylesheet" href="assets/css/polymer-calculator.css">
 		<div class="{{ {dark: theme === 'dark', light: theme === 'light'} | tokenList}}">
+			<div id="output">
+				{{result}}
+			</div>
 			<template repeat="{{row in numpad}}">
 				<div flex horizontal layout>
 					<template repeat="{{key in row}}">

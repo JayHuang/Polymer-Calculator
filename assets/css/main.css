@@ -1,0 +1,7 @@
+h4 {
+	text-align: center;
+}
+
+body > polymer-calculator {
+	margin: 5px auto;
+}
