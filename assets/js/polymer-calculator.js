@@ -8,7 +8,7 @@ Polymer('polymer-calculator', {
 	result: '',
 	numpad: [
 		['7', '8', '9', '*', 'CLR'],
-		['4', '5', '6', '/', 'root'],
+		['4', '5', '6', '/', '\u221A'],
 		['1', '2', '3', '+'],
 		['.', '0', '=', '-'],
 	],
@@ -45,7 +45,7 @@ Polymer('polymer-calculator', {
 		}
 
 		switch(val) {
-			case 'root':
+			case '\u221A':
 				this.equation = Math.sqrt(this.equation);
 				this.calculate(this.equation);
 				break;
