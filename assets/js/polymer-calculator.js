@@ -6,7 +6,7 @@ Polymer('polymer-calculator', {
 
 	theme: 'light',
 	equation: '',
-	result: '25',
+	result: '',
 	numpad: [
 		['7', '8', '9', '*', 'CLR'],
 		['4', '5', '6', '/', 'root'],
@@ -43,8 +43,8 @@ Polymer('polymer-calculator', {
 
 		switch(val) {
 			case 'root':
-				this.result = Math.sqrt(this.result);
-				// should squareroot equation and update result
+				this.equation = Math.sqrt(this.equation);
+				this.calculate(this.equation);
 				break;
 			case 'CLR':
 				this.clear();

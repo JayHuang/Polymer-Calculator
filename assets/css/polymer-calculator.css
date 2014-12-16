@@ -13,3 +13,28 @@
 	background-color: #EEE;
 	text-align: center;
 }
+
+#output {
+	text-align: left;
+	font-size: 25px;
+	line-height: 30px;
+	padding: 5px;
+	height: 50px;
+	box-sizing: border-box;
+}
+
+#output.result > #equation {
+	display: none;
+}
+
+#output.result > #result {
+	display: block;
+}
+
+#output.equation > #result {
+	display: none;
+}
+
+#output.equation > #equation {
+	display: block;
+}
