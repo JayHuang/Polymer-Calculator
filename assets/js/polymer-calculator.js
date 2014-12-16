@@ -51,6 +51,7 @@ Polymer('polymer-calculator', {
 				break;
 			case 'CLR':
 				this.clear();
+				break;
 			case '=':
 				this.calculate(this.equation);
 				break;
