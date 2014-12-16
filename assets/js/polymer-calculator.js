@@ -1,4 +1,9 @@
 Polymer('polymer-calculator', {
+	ready: function() {
+		this.tabIndex = 0;
+		this.focus();
+	},
+
 	theme: 'light',
 	equation: '',
 	result: '25',
@@ -9,38 +14,59 @@ Polymer('polymer-calculator', {
 		['.', '0', '=', '-'],
 	],
 
+	// Uses Polymer event delegates
+	eventDelegates: {
+		keypress: 'keyPress'
+	},
+
 	clear: function() {
 		this.equation = '';
 		this.result = '';
 	},
 
 	// Check for special actions, otherwise add char to equation
-	processButton: function(event) {
-		window.a = this.equation;
-		window.b = this.result;
-		var val = event.target.attributes['data-value'].value;
-		console.log(val);
-
-		if(val === 'root') {
-			this.result = Math.sqrt(this.result);
-		} else if (val === 'CLR') {
-			this.equation = '';
-			this.result = '';
-		} else if (val === '=') {
-			this.calculate(this.equation);
+	processButton: function(key) {
+		var val;
+		if(key.target) { // check if it's an event
+			val = key.target.attributes['data-value'].value;
 		} else {
-			this.equation += this.getValidKey(val);
+			val = key;
+		}
+
+		switch(val) {
+			case 'root':
+				this.result = Math.sqrt(this.result);
+				break;
+			case 'CLR':
+				this.equation = '';
+				this.result = '';
+			case '=':
+				this.calculate(this.equation);
+				break;
+			default:
+				this.equation += this.getValidKey(val);
 		}
 	},
 
+	// Attempt to calculate the equation and update the result accordingly
 	calculate: function(equation) {
 		try {
 			this.equation = eval(equation);
 			this.result = this.equation;
-			// console.log(this.equation);
 		} catch (exception) {
 			this.result = "error";
 		}
+	},
+
+	keyPress: function(event) {
+		var key = event.keyCode;
+		var validkey = ''
+		if(key === 13) { // Enter
+			validkey = '=';
+		} else {
+			validkey = String.fromCharCode(key);
+		}
+		this.processButton(validkey);
 	},
 
 	// Only return the key if it matches button options
@@ -52,5 +78,6 @@ Polymer('polymer-calculator', {
 					return key;
 			}
 		}
+		return '';
 	}
 });
