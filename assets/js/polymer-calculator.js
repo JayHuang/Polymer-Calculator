@@ -16,12 +16,20 @@ Polymer('polymer-calculator', {
 
 	// Uses Polymer event delegates
 	eventDelegates: {
+		keydown: 'keyDown', // Use keydown event for backspace
 		keypress: 'keyPress'
 	},
 
+	// Clears everything
 	clear: function() {
 		this.equation = '';
 		this.result = '';
+	},
+
+	delete: function() {
+		if(this.result) {
+			this.equation = this.equation.toString().slice(0, -1);
+		}
 	},
 
 	// Check for special actions, otherwise add char to equation
@@ -36,10 +44,10 @@ Polymer('polymer-calculator', {
 		switch(val) {
 			case 'root':
 				this.result = Math.sqrt(this.result);
+				// should squareroot equation and update result
 				break;
 			case 'CLR':
-				this.equation = '';
-				this.result = '';
+				this.clear();
 			case '=':
 				this.calculate(this.equation);
 				break;
@@ -58,8 +66,17 @@ Polymer('polymer-calculator', {
 		}
 	},
 
+	keyDown: function(event) {
+		var key = event.keyCode || event.which;
+		if(key === 8) {
+			this.delete();
+			event.preventDefault();
+		}
+	},
+
+	// Handles keypresses aside from backspace
 	keyPress: function(event) {
-		var key = event.keyCode;
+		var key = event.keyCode || event.which;
 		var validkey = ''
 		if(key === 13) { // Enter
 			validkey = '=';
@@ -67,6 +84,7 @@ Polymer('polymer-calculator', {
 			validkey = String.fromCharCode(key);
 		}
 		this.processButton(validkey);
+		event.preventDefault();
 	},
 
 	// Only return the key if it matches button options
