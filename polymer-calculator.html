@@ -6,13 +6,15 @@
 				<div id="equation">{{equation}}</div>
 				<div id="result">{{result}}</div>
 			</div>
-			<template repeat="{{row in numpad}}">
-				<div flex horizontal layout>
-					<template repeat="{{key in row}}">
-						<div class="keys" on-click="{{processButton}}" data-value="{{key}}">{{key}}</div>
-					</template>
-				</div>
-			</template>
+			<div id="keygrid">
+				<template repeat="{{row in numpad}}">
+					<div flex horizontal layout>
+						<template repeat="{{key in row}}">
+							<div class="keys" on-click="{{processButton}}" data-value="{{key}}">{{key}}</div>
+						</template>
+					</div>
+				</template>
+			</div>
 		</div>
 	</template>
 	<script src="assets/js/polymer-calculator.js"></script>

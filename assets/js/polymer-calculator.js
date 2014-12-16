@@ -3,7 +3,6 @@ Polymer('polymer-calculator', {
 		this.tabIndex = 0;
 		this.focus();
 	},
-
 	theme: 'light',
 	equation: '',
 	result: '',
@@ -26,8 +25,12 @@ Polymer('polymer-calculator', {
 		this.result = '';
 	},
 
+	// Deletes the last character from equation and clears any errors
 	delete: function() {
 		if(this.result) {
+			this.result = '';
+			this.equation = this.equation.toString().slice(0, -1);
+		} else if(this.equation) {
 			this.equation = this.equation.toString().slice(0, -1);
 		}
 	},
@@ -92,7 +95,7 @@ Polymer('polymer-calculator', {
 		var keys = this.numpad;
 		for(var i = 0; i < keys.length; i++) {
 			for(var j = 0; j < keys[i].length; j++) {
-				if(keys[i][j] == key)
+				if(keys[i][j] == key || key == '(' || key == ')')
 					return key;
 			}
 		}
