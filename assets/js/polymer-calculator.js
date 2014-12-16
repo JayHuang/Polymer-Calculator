@@ -14,11 +14,12 @@ Polymer('polymer-calculator', {
 		this.result = '';
 	},
 
+	// Check for special actions, otherwise add char to equation
 	processButton: function(event) {
-		// window.a = this.equation;
-		// window.b = this.result;
+		window.a = this.equation;
+		window.b = this.result;
 		var val = event.target.attributes['data-value'].value;
-		// console.log(val);
+		console.log(val);
 
 		if(val === 'root') {
 			this.result = Math.sqrt(this.result);
@@ -26,14 +27,30 @@ Polymer('polymer-calculator', {
 			this.equation = '';
 			this.result = '';
 		} else if (val === '=') {
-			this.calculate();
+			this.calculate(this.equation);
 		} else {
-			this.equation += val;
+			this.equation += this.getValidKey(val);
 		}
 	},
 
-	calculate: function() {
-		// console.log(eval(this.equation));
-		return eval(this.equation);
+	calculate: function(equation) {
+		try {
+			this.equation = eval(equation);
+			this.result = this.equation;
+			// console.log(this.equation);
+		} catch (exception) {
+			this.result = "error";
+		}
+	},
+
+	// Only return the key if it matches button options
+	getValidKey: function(key) {
+		var keys = this.numpad;
+		for(var i = 0; i < keys.length; i++) {
+			for(var j = 0; j < keys[i].length; j++) {
+				if(keys[i][j] == key)
+					return key;
+			}
+		}
 	}
 });

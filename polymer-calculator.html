@@ -3,6 +3,7 @@
 		<link rel="stylesheet" href="assets/css/polymer-calculator.css">
 		<div class="{{ {dark: theme === 'dark', light: theme === 'light'} | tokenList}}">
 			<div id="output">
+				{{equation}}
 				{{result}}
 			</div>
 			<template repeat="{{row in numpad}}">
