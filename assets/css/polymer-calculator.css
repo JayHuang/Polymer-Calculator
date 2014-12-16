@@ -32,6 +32,52 @@
   src: local('RobotoDraft Italic'), local('RobotoDraft-Italic'), url(https://fonts.gstatic.com/s/robotodraft/v1/er-TIW55l9KWsTS1x9bTfgeOulFbQKHxPa89BaxZzA0.woff2) format('woff2'), url(https://fonts.gstatic.com/s/robotodraft/v1/er-TIW55l9KWsTS1x9bTfoo3ZslTYfJv0R05CazkwN8.woff) format('woff');
 }
 
+/*************************
+* DARK THEME
+**************************/
+.dark {
+	color: #FFF;
+	background-color: #585252;
+}
+
+.dark #output {
+	background-color: #AAA;
+	border: 5px solid #241F1F;
+}
+
+.dark .keys {
+	background-color: #241F1F;
+}
+
+.dark .keys:hover {
+	background-color: #AAA;
+}
+
+/*************************
+* LIGHT THEME
+**************************/
+.light {
+	color: #000;
+	background-color: #CCC;
+}
+
+
+.light #output {
+	background-color: #CCC;
+	border: 5px solid #777;
+}
+
+.light .keys {
+	background-color: #AAA;
+}
+
+.light .keys:hover {
+	background-color: #777;
+}
+
+/*************************
+* CALCULATOR LAYOUT
+**************************/
 #keygrid {
 	padding: 5px;
 }
@@ -44,7 +90,9 @@
 	margin: 5px;
 	padding: 5px;
 	cursor: pointer;
-	background-color: #EEE;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 
 #output {
@@ -54,6 +102,12 @@
 	padding: 5px;
 	height: 50px;
 	box-sizing: border-box;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 #output.result > #equation {

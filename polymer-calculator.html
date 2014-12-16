@@ -3,8 +3,8 @@
 		<link rel="stylesheet" href="assets/css/polymer-calculator.css">
 		<div class="{{ {dark: theme === 'dark', light: theme === 'light'} | tokenList}}">
 			<div id="output" class="{{ {result: result !== '0', 'equation': result !== equation && result !== 'error'} | tokenList}}">
-				<div id="equation">{{equation}}</div>
-				<div id="result">{{result}}</div>
+				<div id="equation" class="ellipsis">{{equation}}</div>
+				<div id="result" class="ellipsis">{{result}}</div>
 			</div>
 			<div id="keygrid">
 				<template repeat="{{row in numpad}}">
